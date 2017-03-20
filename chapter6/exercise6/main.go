@@ -1,4 +1,4 @@
-// Calculates the factorial of a given number
+// Calculates the factorial of a given number using arbitrary precision
 package main
 
 import (
