@@ -1,7 +1,10 @@
 // A non-recursive fibonacci calculator
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	var result int
@@ -11,6 +14,10 @@ func main() {
 			result += i
 		}
 	}
-	fib(1500)
+	timeBefore := time.Now()
+	fib(50)
 	fmt.Println(result)
+	timeAfter := time.Now()
+	delta := timeAfter.Sub(timeBefore)
+	fmt.Println(delta)
 }

@@ -4,12 +4,18 @@ package main
 import (
 	"fmt"
 	"math/big"
+	"time"
 )
 
 func main() {
-	for i := 1; i <= 10000; i++ {
+	start := time.Now()
+	for i := 1; i <= 1000; i++ {
 		fmt.Printf("Factorial %d is: %v\n", i, factorial(i))
 	}
+	finish := time.Now()
+	delta := finish.Sub(start)
+	fmt.Printf("Took %v\n", delta)
+
 }
 
 func factorial(n int) (x *big.Int) {
@@ -22,7 +28,3 @@ func factorial(n int) (x *big.Int) {
 	}
 	return result
 }
-
-// func factorial_2(n int) (f int){
-//
-// }
