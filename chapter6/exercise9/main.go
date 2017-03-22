@@ -15,7 +15,7 @@ func main() {
 		}
 	}
 	timeBefore := time.Now()
-	fib(50)
+	fib(1e8)
 	fmt.Println(result)
 	timeAfter := time.Now()
 	delta := timeAfter.Sub(timeBefore)

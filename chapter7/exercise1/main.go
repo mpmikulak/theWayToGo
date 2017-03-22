@@ -1,15 +1,15 @@
-// Proves that when assigning an array to another, a distinct copy
-// in memory is made
+// Proves that when using new, the return value is a pointer to the
+// array and it must  be dereferenced
 package main
 
 import "fmt"
 
 func main() {
-	array1 := new([5]int)
-	array2 := array1
-	array2[0] = 1
+	var arr1 = new([10]int)
+	arr2 := *arr1 // Dereferencing the array passes a copy of the values
+	arr2[0] = 1
 
-	fmt.Println(&array1)
-	fmt.Println(&array2)
+	fmt.Println(arr1)
+	fmt.Println(arr1)
 
 }
