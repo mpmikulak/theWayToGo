@@ -5,24 +5,20 @@ import (
 	"time"
 )
 
-const limit = 50
+const limit = 51
 
 func main() {
-	timeBefore := time.Now()
-	result := fibonacci(limit)
-	timeAfter := time.Now()
-	delta := timeAfter.Sub(timeBefore)
-	fmt.Printf("Fibonacci number %v calculated in %v.\n", limit, delta)
-	fmt.Println(result)
-}
 
-func fibonacci(x int) (fib int) {
-	fibArr := new([limit]int)
-	fibArr[0] = 1
-	fibArr[1] = 2
+	arr := new([limit]int)
+	timeBefore := time.Now()
+	arr[0] = 0
+	arr[1] = 1
+
 	for i := 2; i < limit; i++ {
-		fibArr[i] = fibArr[i-1] + fibArr[i-2]
+		arr[i] = arr[i-1] + arr[i-2]
 	}
-	fib = fibArr[limit-1]
-	return
+	timeAfter := time.Now()
+
+	delta := timeAfter.Sub(timeBefore)
+	fmt.Printf("Fibonacci number %v: %v. Calculated in %v.\n", len(arr), arr[len(arr)-1], delta)
 }
