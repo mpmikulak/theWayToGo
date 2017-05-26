@@ -1,22 +1,27 @@
 // Summary of chapter 8 - Maps
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 	// Maps are reference types with key value pairs
+	// Any value that can be checked by operations == and != can
+	// be used as the key, including pointers and interface types
 	// Maps can be created like any other literal
 	mapLit := map[string]int{"one": 1, "two": 2, "three": 3}
-	fmt.Println(mapLit)
+	fmt.Printf("Map literal: %v , type: %T\n", mapLit, mapLit)
 
 	// Also using the make keyword. Do not use the new keyword
 	mapCreated := make(map[string]float32)
 	mapCreated["half"] = 0.5
-	fmt.Println(mapCreated)
+	fmt.Printf("Map created: %v , type: %T\n", mapCreated, mapCreated)
 
 	// Maps can be assigned as well
 	mapAssigned := mapCreated
-	fmt.Println(mapAssigned)
+	fmt.Printf("Map assigned: %v , type: %T\n", mapAssigned, mapAssigned)
 
 	// Maps can have slices as values
 	sliceMap := make(map[int][]int)
@@ -49,10 +54,44 @@ func main() {
 	}
 
 	// Use make to create a slice of maps
-	mapSlice := make([]map[int]int, 5) // Specify the slice to be 5 long
-	for i := range mapSlice {
-		mapSlice[i] = make(map[int]int)
-		mapSlice[i][1] = 2
+	items := make([]map[int]int, 5) // Specify the slice to be 5 long
+	for i := range items {
+		items[i] = make(map[int]int) // The index of the map must be used
+		items[i][1] = 2
 	}
-	fmt.Println(a)
+	fmt.Printf("Version A: Value of items: %v\n", items)
+
+	items2 := make([]map[int]int, 5)
+	for _, item := range items2 { // "item" is a copy of the value
+		item = make(map[int]int, 1)
+		item[1] = 2 // This doesn't change the value
+	}
+	fmt.Printf("Version B: Value of items: %v\n", items2)
+
+	// Maps aren't sorted, even the keys
+	// To sort a map, copy to a slice and sort using the sort package
+	var (
+		barVal = map[string]int{"alpha": 34, "bravo": 56, "charlie": 23,
+			"delta": 87, "echo": 56, "foxtrot": 12, "golf": 34, "hotel": 16,
+			"indio": 87, "juliet": 65, "kilo": 43, "lima": 98}
+	)
+
+	fmt.Println("Unsorted:")
+	for k, v := range barVal {
+		fmt.Printf("Key: %v, Value: %v / ", k, v)
+	}
+	fmt.Println()
+
+	keys := make([]string, len(barVal))
+	i := 0
+	for k, _ := range barVal {
+		keys[i] = k
+		i++
+	}
+	sort.Strings(keys)
+	fmt.Println("Sorted:")
+	for _, k := range keys {
+		fmt.Printf("Key: %v, Value: %v / ", k, barVal[k])
+	}
+	fmt.Println()
 }

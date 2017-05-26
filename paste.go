@@ -1,12 +1,8 @@
 package main
 
-import (
-	"fmt"
+var (
+	first_float float64 = 2.0
 )
 
 func main() {
-	s := make([]int, 10)
-	fmt.Println(len(s))
-	s = s[1 : 1+1]
-	fmt.Println(len(s))
 }
