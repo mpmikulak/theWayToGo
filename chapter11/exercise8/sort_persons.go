@@ -32,7 +32,7 @@ func main() {
 	p2 := Person{"Michael", "Jordan"}
 	p3 := Person{"Randy", "Johnson"}
 
-	company := Persons{p1, p2, p3}
+	company := Persons{p1, p3, p2}
 	fmt.Println(company)
 	sorting.Sort(company)
 	fmt.Println(company)

@@ -62,6 +62,7 @@ func showValue(v valuable) {
 	fmt.Printf("The value of the asset is $%.2f\n", v.getValue())
 }
 
+// classifier executes customized actions according to the type
 func classifier(items ...interface{}) {
 	for i, x := range items {
 		switch x.(type) {
